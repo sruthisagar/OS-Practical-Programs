@@ -1,3 +1,4 @@
+/* c program to finding factorial */
 #!/bin/bash
 
 factorial()
