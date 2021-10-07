@@ -27,44 +27,6 @@ void sort(int k)
                 if (k == 3)
                     swap(&prio[j], &prio[j + 1]);
             }
-            else if (arrival[j] == arrival[j + 1])
-            {
-                switch (k)
-                {
-                case 1:
-                    if (process[j] > process[j + 1])
-                    {
-                        swap(&burst[j], &burst[j + 1]);
-                        swap(&process[j], &process[j + 1]);
-                    }
-                    break;
-
-                case 2:
-                    if (burst[j] > burst[j + 1])
-                    {
-                        swap(&burst[j], &burst[j + 1]);
-                        swap(&process[j], &process[j + 1]);
-                    }
-                    break;
-
-                case 3:
-                    if (process[j] > process[j + 1])
-                    {
-                        swap(&burst[j], &burst[j + 1]);
-                        swap(&process[j], &process[j + 1]);
-                        swap(&prio[j], &prio[j + 1]);
-                    }
-                    break;
-
-                case 4:
-                    if (process[j] > process[j + 1])
-                    {
-                        swap(&burst[j], &burst[j + 1]);
-                        swap(&process[j], &process[j + 1]);
-                    }
-                    break;
-                }
-            }
         }
     }
 }
@@ -176,15 +138,13 @@ void sjf()
 
 int psort(int a[], int s)
 {
+    int ind=0;
     for (int i = 0; i < s; i++)
     {
-        for (int j = i + 1; j < s; j++)
-        {
-            if (prio[a[j]] < prio[a[i]])
-                swap(&a[j], &a[i]);
-        }
+        if (prio[a[i]] < prio[a[ind]])
+            ind=i;
     }
-    return (a[0]);
+    return (a[ind]);
 }
 
 int remain()
@@ -280,43 +240,20 @@ void roundrobin()
 
         if (bt[readyq[front]] <= tq && bt[readyq[front]] > 0 && r > 0)
         {
-            if (waiting[readyq[front]] == -1)
-            {
-                time += bt[readyq[front]];
-                bt[readyq[front]] = 0;
-                turnaround[readyq[front]] = time - arrival[readyq[front]];
-                waiting[readyq[front]] = turnaround[readyq[front]] - burst[readyq[front]];
-                t = pop();
-                r--;
-                f = 0;
-            }
-            else
-            {
-                time += bt[readyq[front]];
-                bt[readyq[front]] = 0;
-                turnaround[readyq[front]] = time - arrival[readyq[front]];
-                waiting[readyq[front]] = turnaround[readyq[front]] - burst[readyq[front]];
-                t = pop();
-                r--;
-                f = 0;
-            }
+            time += bt[readyq[front]];
+            bt[readyq[front]] = 0;
+            turnaround[readyq[front]] = time - arrival[readyq[front]];
+            waiting[readyq[front]] = turnaround[readyq[front]] - burst[readyq[front]];
+            t = pop();
+            r--;
+            f = 0;
         }
         else if (bt[readyq[front]] > 0 && r > 0)
         {
-            if (waiting[readyq[front]] == -1)
-            {
-                time += tq;
-                bt[readyq[front]] -= tq;
-                t = pop();
-                f = 1;
-            }
-            else
-            {
-                time += tq;
-                bt[readyq[front]] -= tq;
-                t = pop();
-                f = 1;
-            }
+            time += tq;
+            bt[readyq[front]] -= tq;
+            t = pop();
+            f = 1;
         }
         else
         {
