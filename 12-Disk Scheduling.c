@@ -4,26 +4,15 @@
 int requests[50], diff[10][10], seekseq[50], lowq[50], uppq[50], l, u, head, scount, n, h, dsize;
 char dir;
 
-void fcfs()
+void displaySeektimes(int req[], int count, int r)
 {
     int i;
-    head = h;
-    scount = 0;
-
-    printf("\nFCFS\n");
-    for (i = 0; i < n; i++)
-    {
-        scount += abs(requests[i] - head);
-        head = requests[i];
-    }
-
     printf("Seek Sequence \n%d -> ", h);
-    for (i = 0; i < n - 1; i++)
-        printf("%d -> ", requests[i]);
-    printf("%d\n", requests[i]);
-    printf("Total seek time\n%d\n", scount);
+    for (i = 0; i < r; i++)
+        printf("%d -> ", req[i]);
+    printf("%d\n", req[i]);
+    printf("Total seek time\n%d\n", count);
 }
-
 void calcdiff(int head)
 {
     for (int i = 0; i < n; i++)
@@ -46,6 +35,21 @@ int minindex()
     return ind;
 }
 
+void fcfs()
+{
+    int i;
+    head = h;
+    scount = 0;
+
+    printf("\nFCFS\n");
+    for (i = 0; i < n; i++)
+    {
+        scount += abs(requests[i] - head);
+        head = requests[i];
+    }
+    displaySeektimes(requests, scount, n - 1);
+}
+
 void sstf()
 {
     int i, ind;
@@ -65,11 +69,7 @@ void sstf()
     }
     seekseq[i] = head;
 
-    printf("Seek Sequence \n");
-    for (i = 0; i < n; i++)
-        printf("%d -> ", seekseq[i]);
-    printf("%d\n", seekseq[i]);
-    printf("Total seek time\n%d\n", scount);
+    displaySeektimes(seekseq, scount, n);
 }
 
 int cmpfunc(const void *a, const void *b)
@@ -128,11 +128,7 @@ void scan()
         }
     }
 
-    printf("Seek Sequence \n");
-    for (i = 0; i < ss - 1; i++)
-        printf("%d -> ", seekseq[i]);
-    printf("%d\n", seekseq[i]);
-    printf("Total seek time\n%d\n", scount);
+    displaySeektimes(seekseq, scount, ss - 1);
 }
 
 void cscan()
@@ -191,11 +187,7 @@ void cscan()
         ss = j;
     }
 
-    printf("Seek Sequence \n");
-    for (i = 0; i < ss - 1; i++)
-        printf("%d -> ", seekseq[i]);
-    printf("%d\n", seekseq[i]);
-    printf("Total seek time\n%d\n", scount);
+    displaySeektimes(seekseq, scount, ss - 1);
 }
 
 void look()
@@ -244,11 +236,7 @@ void look()
         }
     }
 
-    printf("Seek Sequence \n");
-    for (i = 0; i < ss - 1; i++)
-        printf("%d -> ", seekseq[i]);
-    printf("%d\n", seekseq[i]);
-    printf("Total seek time\n%d\n", scount);
+    displaySeektimes(seekseq, scount, ss - 1);
 }
 
 void clook()
@@ -304,11 +292,7 @@ void clook()
         ss = j;
     }
 
-    printf("Seek Sequence \n");
-    for (i = 0; i < ss - 1; i++)
-        printf("%d -> ", seekseq[i]);
-    printf("%d\n", seekseq[i]);
-    printf("Total seek time\n%d\n", scount);
+    displaySeektimes(seekseq, scount, ss - 1);
 }
 
 void main()
