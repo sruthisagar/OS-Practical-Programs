@@ -5,39 +5,45 @@ int allocation[5][5], max[5][4], need[5][5], available[10];
 
 int p, r, f[10], safe[10];
 
-int safety()
+int
+safety ()
 {
 
-    int i, j, k, y, flag, ind = 0;
+  int i, j, k, y, flag, ind = 0;
+  
+  for (j = 0; j < r; j++)
+    work[j]=available[j];
 
-    for (k = 0; k < p; k++)
+  for (k = 0; k < p; k++)
     {
-        for (i = 0; i < p; i++)
-        {
-            if (f[i] == 0)
-            {
-                flag = 0;
-                for (j = 0; j < r; j++)
-                    if (need[i][j] > available[j])
-                    {
-                        flag = 1;
-                        break;
-                    }
-                if (flag == 0)
-                {
-                    safe[ind++] = i;
-                    for (y = 0; y < r; y++)
-                        available[y] += allocation[i][y];
-                    f[i] = 1;
-                }
-            }
-        }
+      for (i = 0; i < p; i++)
+	{
+	  if (f[i] == 0)
+	    {
+	      flag = 0;
+	      for (j = 0; j < r; j++)
+		if (need[i][j] > work[j])
+		  {
+		    flag = 1;
+		    break;
+		  }
+	      if (flag == 0)
+		{
+		  safe[ind++] = i;
+		  for (y = 0; y < r; y++)
+		    work[y] += allocation[i][y];
+		  f[i] = 1;
+		}
+	    }
+	}
     }
-    if (ind == p)
-        return 1;
-    else
-        return 0;
-}
+  if (ind == p){
+//         printf ("The safe sequence is \t");
+//   for (j = 0; j < p - 1; j++)
+//     printf ("P%d -> ", safe[j]);
+//   printf ("P%d \n", safe[j]);
+      return 1;
+  }
 
 void display()
 {
