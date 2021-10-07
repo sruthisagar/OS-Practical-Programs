@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int allocation[5][5], max[5][4], need[5][5], available[10];
+int allocation[5][5], max[5][4], need[5][5], available[10], work[10];
 
 int p, r, f[10], safe[10];
 
-int
-safety ()
+int safety ()
 {
 
   int i, j, k, y, flag, ind = 0;
@@ -44,6 +43,10 @@ safety ()
 //   printf ("P%d \n", safe[j]);
       return 1;
   }
+
+  else
+    return 0;
+}
 
 void display()
 {
