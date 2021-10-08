@@ -9,6 +9,7 @@ sem_t chopstick[5];
 void eat(int p)
 {
     printf("Philosopher %d eats\n", p);
+    sleep(2);
 }
 
 void *philosophers(void *n)
@@ -22,7 +23,6 @@ void *philosophers(void *n)
     sem_wait(&chopstick[(p + 1) % 5]);
     printf("Philosopher %d picks right chopstick\n", p);
     eat(p);
-    sleep(2);
     printf("Philosopher %d finished eating\n", p);
     sem_post(&chopstick[(p + 1) % 5]);
     printf("Philosopher %d left right chopstick\n", p);
