@@ -6,7 +6,8 @@ int st, l;
 
 void clear()
 {
-    for (int i = 0; i <= 20; i++)
+    int i = 20;
+    while(i--)
         file[i] = 0;
 }
 
@@ -154,8 +155,8 @@ void linked()
 
 void main()
 {
-    int ch;
-    while (1)
+    int ch, flag = 1;
+    while (flag)
     {
         printf("1. Sequential \n2. Indexed \n3. Linked \n4. Exit \n");
         printf("Enter your choice\n");
@@ -163,22 +164,22 @@ void main()
 
         switch (ch)
         {
-        case 1:
-            clear();
-            sequential();
-            break;
-        case 2:
-            clear();
-            indexed();
-            break;
-        case 3:
-            clear();
-            linked();
-            break;
-        case 4:
-            exit(0);
-        default:
-            printf("Invalid choice\n");
+            case 1:
+                clear();
+                sequential();
+                break;
+            case 2:
+                clear();
+                indexed();
+                break;
+            case 3:
+                clear();
+                linked();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Invalid choice\n");
         }
     }
 }
