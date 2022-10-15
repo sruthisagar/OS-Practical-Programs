@@ -15,8 +15,8 @@ void displaySeektimes(int req[], int count, int r)
 }
 void calcdiff(int head)
 {
-    for (int i = 0; i < n; i++)
-        diff[i][0] = abs(requests[i] - head);
+    for (int j = 0; j < n; j++)
+        diff[j][0] = abs(requests[j] - head);
 }
 
 int minindex()
@@ -24,12 +24,12 @@ int minindex()
     int ind = -1;
     int min = 1e9;
 
-    for (int i = 0; i < n; i++)
+    for (int j = 0; j < n; j++)
     {
-        if (!diff[i][1] && min > diff[i][0])
+        if (!diff[j][1] && min > diff[j][0])
         {
-            min = diff[i][0];
-            ind = i;
+            min = diff[j][0];
+            ind = j;
         }
     }
     return ind;
@@ -42,10 +42,10 @@ void fcfs()
     scount = 0;
 
     printf("\nFCFS\n");
-    for (i = 0; i < n; i++)
+    for (k = 0; k < n; k++)
     {
-        scount += abs(requests[i] - head);
-        head = requests[i];
+        scount += abs(requests[k] - head);
+        head = requests[k];
     }
     displaySeektimes(requests, scount, n - 1);
 }
