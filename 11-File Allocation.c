@@ -13,7 +13,7 @@ void clear()
 
 void sequential()
 {
-    int i, k, flag;
+    int i, k, l, flag;
 
     printf("\nEnter the no of files \n");
     scanf("%d", &n);
@@ -24,8 +24,8 @@ void sequential()
         printf("Enter the starting index and length of file %d \n", i);
         scanf("%d %d", &st, &l);
 
-        for (k = st; k < st + l; k++)
-            if (file[k] == 0)
+        for (l = st; l < st + l; l++)
+            if (file[l] == 0)
                 flag++;
 
         if (flag == l)
