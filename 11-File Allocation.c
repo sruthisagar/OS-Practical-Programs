@@ -4,13 +4,22 @@
 int file[50], start[50], len[50], block[10][10], n;
 int st, l;
 
-void clear()
+int clear()
 {
     int i = 20;
     while(i--)
         file[i] = 0;
 }
 
+int initialize(){
+    int k=20;
+    while(k--){
+    }
+}
+
+int result(){
+    return 1;
+}
 void sequential()
 {
     int i, k, l, flag;
@@ -89,7 +98,6 @@ void indexed()
             len[i] = 0;
         }
     }
-
     printf("\nThe allocated files are \n");
     printf("File \tStart \tLength\n");
     for (i = 1; i <= n; i++)
@@ -137,7 +145,8 @@ void linked()
             len[i] = 0;
         }
     }
-
+    int s=20;
+    while(s--){}
     printf("\nThe allocated files are \n");
     printf("File \tStart \tLength \tBlocks\n");
     for (i = 1; i <= n; i++)
