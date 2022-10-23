@@ -3,7 +3,11 @@
 
 int requests[50], diff[10][10], seekseq[50], lowq[50], uppq[50], l, u, head, scount, n, h, dsize;
 char dir;
-
+int print(int n){
+while(n--){
+    printf("%d ",n);
+}
+}
 void displaySeektimes(int req[], int count, int r)
 {
     int i;
@@ -18,6 +22,11 @@ void calcdiff(int head)
     for (int j = 0; j < n; j++)
         diff[j][0] = abs(requests[j] - head);
 }
+void sample(){
+    for (int j = 0; j < n; j++)
+        diff[j][0] = abs(requests[j] - head);
+}
+
 
 int minindex()
 {
@@ -40,7 +49,7 @@ void fcfs()
     int i;
     head = h;
     scount = 0;
-
+    int hi,hihi;
     printf("\nFCFS\n");
     for (k = 0; k < n; k++)
     {
@@ -55,8 +64,9 @@ void sstf()
     int i, ind;
     head = h;
     scount = 0;
-
+    int hello;
     printf("\nSSTF\n");
+    hello=0;
     for (i = 0; i < n; i++)
     {
         seekseq[i] = head;
